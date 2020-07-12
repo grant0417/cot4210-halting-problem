@@ -49,15 +49,13 @@ class Tape:
 
 class TuringMachine:
     def __init__(self,
-                 states=None,
+                 states,
+                 transitions,
                  symbols=None,
                  blank_symbol=None,
                  input_symbols=None,
                  initial_state=None,
-                 final_states=None,
-                 transitions=None):
-        if states is None:
-            states = {'HALT', 'A', 'B', 'C'}
+                 final_states=None):
         if symbols is None:
             symbols = {0, 1}
         if blank_symbol is None:
@@ -68,15 +66,6 @@ class TuringMachine:
             initial_state = 'A'
         if final_states is None:
             final_states = ['HALT']
-        if transitions is None:
-            transitions = {
-                ('A', 0): (1, Shift.R, 'B'),
-                ('B', 0): (0, Shift.R, 'C'),
-                ('C', 0): (1, Shift.L, 'C'),
-                ('A', 1): (1, Shift.R, 'HALT'),
-                ('B', 1): (1, Shift.R, 'B'),
-                ('C', 1): (1, Shift.L, 'A'),
-            }
         self.states = states
         self.symbols = symbols
         self.blank_symbol = blank_symbol
@@ -187,7 +176,7 @@ if __name__ == "__main__":
         states.append(s)
 
     halting_states = ['HALT']
-    symbols = [0, 1]
+    symbols = {0, 1}
 
     n_halting_states = len(halting_states)
     n_symbols = len(symbols)
@@ -246,9 +235,9 @@ if __name__ == "__main__":
 
     input_transitions = encoding_to_transitions(encoding, states, halting_states, symbols)
 
-    busy_turing = TuringMachine(states=states, symbols=symbols, input_symbols=[0], transitions=busy_transitions)
+    busy_turing = TuringMachine(states=states, transitions=busy_transitions, symbols=symbols, input_symbols=[0])
 
-    input_turing = TuringMachine(states=states, symbols=symbols, input_symbols=[0], transitions=input_transitions)
+    input_turing = TuringMachine(states=states, transitions=input_transitions, symbols=symbols, input_symbols=[0])
 
     print()
     print("Running busy beaver to find the number of steps it takes...")

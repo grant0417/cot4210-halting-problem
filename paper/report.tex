@@ -16,12 +16,14 @@
 \title{The Halting Problem}
 
 \author{
-\IEEEauthorblockN{Holly McCoy, Grant Gurvis, Ali Bayatpoor}
+\IEEEauthorblockN{Ali Bayatpoor, Grant Gurvis, Holly McCoy}
 
 \IEEEauthorblockA{\textit{Computer Science and Engineering} \\
 \textit{University of South Florida}\\
 Tampa, Florida \\
-ggurvis@usf.edu}
+bayatpoora@usf.edu,
+ggurvis@usf.edu,
+hmccoy1@usf.edu}
 }
 
 \maketitle
@@ -38,11 +40,11 @@ automata, formal languages
 
 \section{Introduction}
 
-The Halting Problem is an issue in computer science which refers to the inability of a computer program to effectively and definitively declare whether a program halts or infinitely loops. Computer scientists have deemed this problem as being an “undecidable” problem, which means it is impossible to solve, and it can never be solved. In this paper we will be investigating what exactly the halting problem is, how one could theoretically solve the problem (though it can never be implemented in actuality), a mathematical proof by contradiction proving that the problem is unsolvable, and some concluding remarks highlighting the importance of the issue. 
+The Halting Problem is an issue in computer science which refers to the inability of a computer program to effectively and definitively declare whether a program halts or infinitely loops. Computer scientists have deemed this problem as being an “undecidable” problem, which means it is impossible to solve, and it can never be solved.\cite{computable_numbers} In this paper we will be investigating what exactly the halting problem is, how one could theoretically solve the problem (though it can never be implemented in actuality), a mathematical proof by contradiction proving that the problem is unsolvable, and some concluding remarks highlighting the importance of the issue. 
 
 \section{Halting Problem}
 
-Let us consider what exactly is defined as a “halt” in a program, and what is defined as an “infinite loop” in a program. Take for example a simple Hello World program, in which all that is contained in the program is a print statement that says \verb|print("Hello World")|. Once the program runs, the string will be printed to the output and the program will automatically halt upon execution, thus describing what a “halt” looks like in a program. Now take for example a program with the following code: 
+Let us consider what exactly is defined as a “halt” in a program, and what is defined as an “infinite loop” in a program. \cite{intro} Take for example a simple Hello World program, in which all that is contained in the program is a print statement that says \verb|print("Hello World")|. Once the program runs, the string will be printed to the output and the program will automatically halt upon execution, thus describing what a “halt” looks like in a program. Now take for example a program with the following code: 
 
 \begin{lstlisting}[language=Python]  
 x = 1 
@@ -93,7 +95,7 @@ over all Turing machines of $n$ states and $m$ symbols.
 
 To enumerate over the set of machines there needs to be a way to identify a specific
 Turing machine, to do this a \textit{descriptive number} will be used that will encode
-each machine as a string of letters.~\cite{computable_numbers}
+each machine as a string of characters.~\cite{computable_numbers}
 
 For each Turing machine the machine will be described by a string with each transition being
 described in the format \verb|Symbol-Shift-State|, the string for the 3-state 
