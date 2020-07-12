@@ -47,13 +47,6 @@ class Tape:
                 self.negative[abs(key) - 1] = value
 
 
-class Transition:
-    def __init__(self, write_symbol, move_tape, next_state):
-        self.write_symbol = write_symbol
-        self.move_tape = move_tape
-        self.next_state = next_state
-
-
 class TuringMachine:
     def __init__(self,
                  states=None,
@@ -152,7 +145,7 @@ def encoding_to_transitions(encoding, states, halting_states, symbols):
 def enumerate_transition_encodings(machine_numb: int, states: int, halting_states: int, symbols: int):
     encoding = []
     encoding.append("{}-{}".format(states - halting_states, symbols))
-    for i in range((states - halting_states) * symbols):
+    for _ in range((states - halting_states) * symbols):
         symbol = machine_numb % symbols
         machine_numb //= symbols
         shift = machine_numb % 2
@@ -239,7 +232,8 @@ if __name__ == "__main__":
         print("The encoding is: {}".format(encoding))
     elif type.startswith('m'):
         machine_num = \
-            int(input("Enter a number between 0 and {}: ".format(max_machines(n_states, n_halting_states, n_symbols)))) \
+            int(input("Enter a number between 0 and {}: "
+                      .format(max_machines(n_states, n_halting_states, n_symbols)))) \
             % max_machines(n_states, n_halting_states, n_symbols)
         encoding = enumerate_transition_encodings(machine_num, n_states, n_halting_states, n_symbols)
         print("The encoding is: {}".format(encoding))
@@ -248,7 +242,7 @@ if __name__ == "__main__":
     else:
         raise ValueError("Unknown input for machine type: {}".format(type))
 
-    busy_transitions = encoding_to_transitions(busy_beavers[n_states - 2], states, halting_states, symbols)
+    busy_transitions = encoding_to_transitions(n_busy, states, halting_states, symbols)
 
     input_transitions = encoding_to_transitions(encoding, states, halting_states, symbols)
 
